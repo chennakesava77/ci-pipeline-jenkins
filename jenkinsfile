@@ -8,43 +8,29 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/yourusername/your-repo.git'
+                git branch: 'main', url: 'https://github.com/chennakesava77/ci-pipeline-jenkins.git'
             }
         }
-
         stage('Install Dependencies') {
             steps {
-                // Clean install for CI environments
-                sh 'npm ci'
+                sh 'npm install'
             }
         }
-
         stage('Run Tests') {
             steps {
-                // Run unit tests
                 sh 'npm test'
             }
             post {
                 always {
-                    // Capture test reports if Jest configured to output XML
-                    junit '**/tests/**/*.xml'
+                    junit '**/tests/*.xml'
                 }
             }
         }
-
         stage('Build') {
             steps {
-                // Use npm build script if exists, fallback to copy src
-                script {
-                    if (fileExists('package.json')) {
-                        sh 'npm run build || mkdir -p build && cp -r src/* build/'
-                    } else {
-                        sh 'mkdir -p build && cp -r src/* build/'
-                    }
-                }
+                sh 'mkdir -p build && cp -r src/* build/'
             }
         }
-
         stage('Archive Artifacts') {
             steps {
                 archiveArtifacts artifacts: 'build/**', fingerprint: true
@@ -54,13 +40,11 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build Successful!'
+            echo 'Build Successful!'
         }
         failure {
-            echo '❌ Build Failed!'
-        }
-        always {
-            echo '🔔 Pipeline finished.'
+            echo 'Build Failed!'
         }
     }
 }
+
