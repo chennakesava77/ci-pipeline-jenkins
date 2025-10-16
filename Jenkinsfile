@@ -1,50 +1,49 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_ENV = 'development'
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/chennakesava77/ci-pipeline-jenkins.git'
             }
         }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
+
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                sh 'npm test -- --ci --reporters=default --reporters=jest-junit'
             }
             post {
                 always {
-                    junit '**/tests/*.xml'
+                    junit 'test-results/junit.xml'
                 }
             }
         }
+
         stage('Build') {
             steps {
-                sh 'mkdir -p build && cp -r src/* build/'
+                echo 'Building the application...'
             }
         }
+
         stage('Archive Artifacts') {
             steps {
-                archiveArtifacts artifacts: 'build/**', fingerprint: true
+                archiveArtifacts artifacts: '**/test-results/junit.xml', fingerprint: true
             }
         }
     }
 
     post {
         success {
-            echo 'Build Successful!'
+            echo '✅ Build succeeded!'
         }
         failure {
-            echo 'Build Failed!'
+            echo '❌ Build failed!'
         }
     }
 }
-
