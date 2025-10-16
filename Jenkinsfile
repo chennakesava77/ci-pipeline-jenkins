@@ -16,14 +16,13 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh '''
-                    mkdir -p test-results
-                    npx jest --ci --reporters=default --reporters=jest-junit
-                '''
+                // Use npx so jest-junit is correctly found
+                sh 'npx jest --ci --reporters=default --reporters=jest-junit'
             }
             post {
                 always {
-                    junit '**/test-results/junit.xml'
+                    // Make sure this matches the jest-junit output
+                    junit 'test-results/junit.xml'
                 }
             }
         }
