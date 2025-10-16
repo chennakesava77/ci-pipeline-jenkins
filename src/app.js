@@ -1,17 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
-// Routes
-const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
-// Static files
-app.use('/static', express.static('src/static'));
-
-// Start server
-app.listen(port, () => {
-    console.log(`App running at http://localhost:${port}`);
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).send('Hello, Jenkins CI!');
 });
 
-module.exports = app; // Export for testing
+// Export app (no app.listen here — Jest will handle this in tests)
+module.exports = app;
