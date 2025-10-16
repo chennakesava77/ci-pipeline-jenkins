@@ -10,17 +10,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                // Install all dependencies including devDependencies
+                sh 'npm install --include=dev'
             }
         }
 
         stage('Run Tests') {
             steps {
+                // Run tests and generate JUnit XML report
                 sh 'npm test -- --ci --reporters=default --reporters=jest-junit'
             }
             post {
                 always {
-                    junit 'test-results/junit.xml'
+                    // Record JUnit test results in Jenkins
+                    junit '**/test-results/junit.xml'
                 }
             }
         }
@@ -33,6 +36,7 @@ pipeline {
 
         stage('Archive Artifacts') {
             steps {
+                // Archive the test report so you can download it later if needed
                 archiveArtifacts artifacts: '**/test-results/junit.xml', fingerprint: true
             }
         }
