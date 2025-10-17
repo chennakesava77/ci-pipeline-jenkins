@@ -1,11 +1,8 @@
-```js
 module.exports = {
-  reporters: [
-    "default",
-    ["jest-junit", {
-      outputDirectory: "test-results",
-      outputName: "junit.xml"
-    }]
-  ]
+  testEnvironment: 'node',
+  verbose: true,
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  collectCoverageFrom: ['src/**/*.js'],
+  reporters: ['default', 'jest-junit']
 };
-

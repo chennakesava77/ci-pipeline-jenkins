@@ -1,0 +1,30 @@
+{
+  "name": "automated-ci-pipeline-jenkins",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest --ci --runInBand"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-junit": "^13.2.0",
+    "supertest": "^7.1.4"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/tests"
+    ],
+    "testMatch": [
+      "**/*.test.js"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": "<rootDir>/reports",
+          "outputName": "junit.xml"
+        }
+      ]
+    ]
+  }
+}

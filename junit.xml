@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="36.384">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-10-16T06:48:51" time="30.968" tests="1">
-    <testcase classname=" Basic addition works" name=" Basic addition works" time="0.044">
+<testsuites name="jest tests" tests="4" failures="0" errors="0" time="45.186">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-10-17T13:17:58" time="28.189" tests="1">
+    <testcase classname=" adds numbers correctly" name=" adds numbers correctly" time="0.042">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-10-17T13:18:27" time="4.055" tests="1">
+    <testcase classname=" Basic addition works" name=" Basic addition works" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-10-17T13:18:31" time="3.97" tests="1">
+    <testcase classname=" adds numbers correctly" name=" adds numbers correctly" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-10-17T13:18:35" time="4.002" tests="1">
+    <testcase classname=" Basic addition works" name=" Basic addition works" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
