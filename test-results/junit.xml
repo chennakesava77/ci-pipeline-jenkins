@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="32.319">
-  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2025-10-16T03:04:06" time="28" tests="1">
-    <testcase classname=" Basic addition works" name=" Basic addition works" time="0.04">
+<testsuites name="jest tests" tests="4" failures="0" errors="0" time="46.699">
+  <testsuite name="ci-pipeline-jenkins/tests/sample.test.js" errors="0" failures="0" skipped="0" timestamp="2025-10-17T15:02:28" time="29.963" tests="1">
+    <testcase classname="-adds numbers correctly" name="adds numbers correctly" time="0.046">
+    </testcase>
+  </testsuite>
+  <testsuite name="ci-pipeline-jenkins/_tests_/sample.test.js" errors="0" failures="0" skipped="0" timestamp="2025-10-17T15:02:59" time="4.284" tests="1">
+    <testcase classname="-Basic addition works" name="Basic addition works" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/sample.test.js" errors="0" failures="0" skipped="0" timestamp="2025-10-17T15:03:03" time="3.431" tests="1">
+    <testcase classname="-adds numbers correctly" name="adds numbers correctly" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="_tests_/sample.test.js" errors="0" failures="0" skipped="0" timestamp="2025-10-17T15:03:06" time="4.099" tests="1">
+    <testcase classname="-Basic addition works" name="Basic addition works" time="0.002">
     </testcase>
   </testsuite>
 </testsuites>
