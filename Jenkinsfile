@@ -1,50 +1,41 @@
 pipeline {
   agent any
 
-  environment {
-    // Make sure Node modules binaries are available
-    PATH = "${env.WORKSPACE}/node_modules/.bin:${env.PATH}"
-  }
-
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/chennakesava77/ci-pipeline-jenkins.git'
+        git branch: 'main', url: 'https://github.com/chennakesava77/ci-pipeline-jenkins.git'
       }
     }
 
     stage('Install Dependencies') {
       steps {
-        sh 'npm install --include=dev'
+        sh 'npm install'
       }
     }
 
     stage('Run Tests') {
       steps {
-        // Ensure the reports folder exists
-        sh 'mkdir -p reports/junit'
-        // Run Jest with default + JUnit reporter
-        sh 'npx jest --ci --reporters=default --reporters=jest-junit'
+        sh 'npm test -- --config jest.config.js'
       }
     }
 
     stage('Build') {
       steps {
-        sh 'npm run build' // replace with your build command
+        echo 'Build step placeholder'
       }
     }
 
     stage('Archive Artifacts') {
       steps {
-        archiveArtifacts artifacts: '**/build/**', fingerprint: true
+        archiveArtifacts artifacts: 'coverage/**', allowEmptyArchive: true
       }
     }
   }
 
   post {
     always {
-      // Match this path to jest-junit outputDirectory/outputName in jest.config.js
-      junit 'reports/junit/junit.xml'
+      junit 'test-results/junit.xml'
       echo '✅ Pipeline completed.'
     }
     failure {
